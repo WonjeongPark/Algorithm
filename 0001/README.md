@@ -33,10 +33,9 @@ participant..........................	completion.............................ret
 
 # Try!
 ## 내가 알고 있는 것
-` `
+`배열끼리 비교, 1:1로 제거하고 남은 것을 출력하자 `
 ## 내가 애매하게 알고 있는 것
-` `<br>
-` `
+`두개의 length가 1차이이므로 sort()해서 정렬하고 비교! `<br>
 
 ##정답
 ## No
@@ -57,7 +56,33 @@ function solution(participant, completion) {
     return answer;
 }
 ```
+
+
+>복잡하게 이중 for을 두개 돌려 같은 것을 제거해야한다고 생각<br>
+>같은 것을 제거하는 것이 아니라 같은 것을 비교하여 다른 것을 출력해야한다<br>
+
+```
+function solution(participant, completion) {
+    for(var i=0;i<participant.length; i++){
+            if(participant[i] !== completion[i]){
+                return participant[i];
+            }
+    }
+}
+```
+>천천히 다시 코드를 읽어보다가 정렬해야한다는 사실을 깨닫고 sort를 적용
+
+
 ## YES
 ```
-[정답]
+function solution(participant, completion) {
+    participant.sort();
+    completion.sort();
+    
+    for(var i=0;i<participant.length; i++){
+            if(participant[i] !== completion[i]){
+                return participant[i];
+            }
+    }
+}
 ```
