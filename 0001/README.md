@@ -37,7 +37,7 @@ participant..........................	completion.............................ret
 ## 내가 애매하게 알고 있는 것
 `두개의 length가 1차이이므로 sort()해서 정렬하고 비교! `<br>
 
-##정답
+## 정답
 ## No
 ```
 function solution(participant, completion) {
