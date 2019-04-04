@@ -86,3 +86,6 @@ function solution(participant, completion) {
     }
 }
 ```
+
+### 복잡도 (complexity)
+`[sort -> log n , for문 -> n ]을 사용 --> 복잡도 O(nlogn).`
