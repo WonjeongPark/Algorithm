@@ -103,6 +103,7 @@ for(var i=0; i<answers.length;i++){
 ```
 ## YES
 ```
+//완벽한 정답 아님
 function solution(answers) {
 var arr1 = new Array;
     arr1[0]=1;
@@ -177,3 +178,75 @@ for(var i=0; i<answers.length;i++){
 `이 쾌감을 기억해서 알고리즘 푸는 동안 더 집중하자`<br>
 `더 짫고 간단한 풀이가 없는지 생각해보기`<br>
 `기본적인 것들은 기억하기`<br><br>
+
+### ++(추가) 더 짧고 간단한 풀이 생각해보기
+```
+//완벽한 정답 아님
+function solution(answers) {
+var n
+var arr1 = [1, 2, 3, 4, 5]
+if(n>4){arr1(n)=arr1(n-4)}
+var arr2 = [2, 1, 2, 3, 2, 4, 2, 5]
+if(n>7){arr2(n)=arr2(n-7)}
+var arr3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]
+if(n>9){arr3(n)=arr3(n-9)}
+
+    var supo1 = 0;
+    var supo2 = 0;
+    var supo3 = 0;
+    
+for(var i=0; i<answers.length;i++){
+
+    if(arr1[i] == answers[i]){
+        supo1++;
+    }}
+for(var i=0; i<answers.length;i++){
+    if(arr2[i] == answers[i]){
+        supo2++;
+    }}
+for(var i=0; i<answers.length;i++){
+    if(arr3[i] == answers[i]){
+        supo3++;
+    }}
+
+    var answer = []
+    
+    if(supo1>=supo2 && supo1>=supo3){
+        answer.push(1) 
+    }
+    if(supo2>=supo3 && supo2>=supo1){
+        answer.push(2)
+    }
+    if(supo3>=supo1 && supo3>=supo2){
+        answer.push(3)
+    }    
+    return answer;
+}
+```
+```
+//정답!
+function solution(answers){
+    let answer = [];
+    let supo = [
+        [1,2,3,4,5],
+        [2,1,2,3,2,4,2,5],
+        [3,3,1,1,2,2,4,4,5,5]
+    ]
+    let scores = [0,0,0];
+    answers.map((v,i) =>{
+        supo.forEach((val,idx)=>{
+            let cur = val.shift();
+            if(cur === v) {scores[idx]++;}
+            supo[idx].push(cur);
+        })
+    })
+    let max = Math.max(...scores);
+    scores.forEach((v,i)=>{
+        if(v===max)answer.push(i+1)
+    }) 
+    return answer;
+}
+```
+### 후기2
+출제문제가 5를 넘어간다면 1번수포자가 찍는 방식부터 마지막인자 5 -> 첫번째인자 1로 넘어가야한다.<br>
+이 점을 잘 생각해 큐 자료구조 방식으로 풀어본다.
