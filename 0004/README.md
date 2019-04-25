@@ -1,5 +1,5 @@
 # 문제
-링크
+https://programmers.co.kr/learn/courses/30/lessons/42579
 ```
 스트리밍 사이트에서 장르 별로 가장 많이 재생된 노래를 두 개씩 모아 베스트 앨범을 출시하려 합니다.
 노래는 고유 번호로 구분하며, 노래를 수록하는 기준은 다음과 같습니다.
@@ -41,23 +41,71 @@ pop 장르는 3,100회 재생되었으며, pop 노래는 다음과 같습니다.
 # Try!
 ## 생각의 흐름
 ```
-장르를 key, 재생된 횟수를 value로 하는 array를 만들어서 같은 장르별 재생횟수의 합을 비교한다.
-array = [{genre1 : plays1}, {genre2 : plays2} ... ]
+장르와 재생된 횟수로 array를 만들어서 같은 장르별 재생횟수의 합을 비교한다.
 그 합이 제일 많은 장르부터 차례대로 장르별 재생횟수가 높은것 부터 2개씩 선발해서 
 그 재생횟수가 포함되는 짝이 array의 몇 번째인지를 뜻하는 수로 array를 만든다.
 
--> genre와 plays의 순서가 같은 것을 명심하고 활용해보자.
+-> genre와 plays의 순서가 같은 것 활용해보자.
 ```
 
 ## 정답
-## No
 ```
-[시도해서 틀린 답]
-```
-## YES
-```
-[정답]
+function solution(genres, plays) {
+    var answer = [];
+    let obj = {
+        max:[]
+    }
+
+    for(let i in genres){
+    //max array를 활용하여 장르별로 그룹지어 plays합 구하기
+        if (obj[genres[i]]){
+            for(let j in obj.max){
+                if(obj.max[j].genres == genres[i]){
+                    obj.max[j].p += plays[i]
+                }
+            }
+            obj[genres[i]].push({
+                id : i,
+                p : plays[i]
+            })
+            } else {
+    //max array
+             ★ obj[genres[i]]= [];
+                obj.max.push({
+                    genres : genres[i],
+                    p : plays[i]
+                })
+                obj[genres[i]].push({
+                    id : i,
+                    p : plays[i]
+                })
+            }
+        }  
+
+//크기대로 정렬해서
+    Object.keys(obj).forEach((key) =>{
+        obj[key].sort((a,b)=>{
+            return a.p > b.p ? -1 :a.p < b.p ? 1 : 0;
+        })
+    })
+    
+ //2개 이상이면 2개, 1개면 1개만뽑아서 넣기
+        for(let i in obj.max){
+            let g = obj.max[i].genres
+            let k = 2
+            if(obj[obj.max[i].genres].length<2){
+                k=1
+            }
+        for(let j=0; j<k; j++){
+            answer.push(parseInt(obj[g][j].id))
+        }
+        }
+
+    return answer;
+}
 ```
 
 ## 후기
-<br>
+아직 문제를 뚝딱뚝딱 푸는 수준은 아니라, 배열을 잘 활용해서 답을 이끌어내는 과정을 계속 연습.<br>
+max array를 활용하여 장르별로 그룹지어 plays합 구하는 과정의 if와 for의 단계적 과정 복습.<br>
+Object.keys(obj).forEach 구문을 잘 익혀서 나중에 key값을 활용할 때 잘 써먹어 보기.
