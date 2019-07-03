@@ -77,10 +77,32 @@ function solution(bridge_length, weight, truck_weights) {
     return Time;
 }
 ```
+
+`문제를 이해하기에는 어렵지 않았으나 작성하기에는 막막해서, 예시로 찾아본 풀이과정에서 가장 짧은 것을 찾아 이해해보기로 했다.`
 ## YES
 ```
-[정답]
+function solution(bridge_length, weight, truck_weights) {
+    var answer = 0;
+    var onB = Array.apply(null,Array(bridge_length)).map(a=>0);
+    var onBh = 0;
+    while (truck_weights.length > 0 || onBh > 0) {
+        onBh -= onB.pop();
+        if (onBh+truck_weights[0]<= weight) {
+            onBh += truck_weights[0];
+            onB.unshift(truck_weights.shift());
+        } else {
+            onB.unshift(0);
+        }
+        answer++;
+    }
+    return answer;
+}
 ```
 
 ## 후기
-<br>
+
+array(n)를 정의하는 것은 길이가 n이고 empty, 즉 비어있는 array를 정의하는 것이고<br>
+Array.apply(null, Array(n))는 길이가 n이고 각 인자가 undefinded로 정의된다.<br><br>
+push()는 배열의 맨 끝에, .unshift()는 배열의 맨 앞에 원소를 추가하고.<br>
+pop()은 마지막 원소를, .shift()는 맨 앞의 원소를 제거한다<br>
+
