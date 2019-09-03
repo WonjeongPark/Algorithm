@@ -10,11 +10,11 @@ https://programmers.co.kr/learn/courses/30/lessons/42627?language=javascript
 - 2ms 시점에 6ms가 소요되는 C작업 요청
 와 같은 요청이 들어왔습니다. 이를 그림으로 표현하면 아래와 같습니다
 ```
-![힙1]('')
+![힙1](https://github.com/WonjeongPark/Algorithm/blob/master/009/%ED%9E%991.png?raw=true)
 <br>
 `한 번에 하나의 요청만을 수행할 수 있기 때문에 각각의 작업을 요청받은 순서대로 처리하면 다음과 같이 처리 됩니다.`
 <br>
-![힙2]('')
+![힙2](https://github.com/WonjeongPark/Algorithm/blob/master/009/%ED%9E%992.png?raw=true)
 <br>
 ```
 - A: 3ms 시점에 작업 완료 (요청에서 종료까지 : 3ms)
@@ -25,7 +25,7 @@ https://programmers.co.kr/learn/courses/30/lessons/42627?language=javascript
 이 때 각 작업의 요청부터 종료까지 걸린 시간의 평균은 10ms(= (3 + 11 + 16) / 3)가 됩니다.
 하지만 A → C → B 순서대로 처리하면
 ```
-![힙3]('')
+![힙3](https://github.com/WonjeongPark/Algorithm/blob/master/009/%ED%9E%993.png?raw=true)
 ```
 - A: 3ms 시점에 작업 완료(요청에서 종료까지 : 3ms)
 - C: 2ms부터 대기하다가, 3ms 시점에 작업을 시작해서 9ms 시점에 작업 완료(요청에서 종료까지 : 7ms)
@@ -123,10 +123,10 @@ function solution (jobs) {
 ```
 
 ## 후기
-힙! 새로운 개념이다. 완전이진트리구조로 최댓값, 최솟값 구하기 쉬운 구조.<br>
-sort하는 방법은 잘 생각해낸 것 같은데 예시로 나온 값에만 성공이고 채점은 엉망이었다.<br>
-정답 예 처럼 queue에 해당하는 배열을 잘 넣는 법(jobs[0][0]보다 큰 인덱스 범위 지정)<br>
-그 것을 sorting하여 pop하는 법을 함수로 잘 정리하여 정해진 범위에서 간단하게 함수를 실행하여 값을 구하는 것을 잘 봐둬야 겠다.<br><br>
-예를 들면 jobs[1]의 값인 [0,3]이 수행되고나서 다음으로 수행될 수 있는 것들은 3 이전에 요청이 온 값들 중에서 수행시간이 짧은 것이어야 한다.<br>
-jobs[i][1]의 값들을 sorting 하면서 그 것이 모든 jobs[i][0]에서 적용 될 것이 아니라 3이전에 요청온 것과 같이 범위를 한정하는게 헷갈렸고<br>
-늘 알고리즘을 풀면서 놓치고 있는 부분인 if (idx === -1) idx = jobs.length와 같은 예외처리도 잘 생각해야겠다.
+힙! 새로운 개념이다. 완전 이진 트리구조로 최댓값, 최솟값 구하기 쉬운 구조.<br>
+sort 하는 방법은 잘 생각해낸 것 같은데 예시로 나온 값에만 성공이고 채점은 엉망이었다. 
+정답 예처럼 queue에 해당하는 배열을 잘 넣는 법(jobs[0][0]보다 큰 인덱스 범위 지정) 
+그것을 sorting 하여 pop 하는 법을 함수로 잘 정리하여 정해진 범위에서 간단하게 함수를 실행하여 값을 구하는 것을 잘 봐 둬야 겠다.<br><br>
+예를 들면 jobs[1]의 값인 [0,3]이 수행되고 나서 다음으로 수행될 수 있는 것들은 3 이전에 요청이 온 값들 중에서 수행 시간이 짧은 것이어야 한다. 
+jobs[i][1]의 값들을 sorting 하면서 그것이 모든 jobs[i][0]에서 적용 될것이 아니라 3이전에 요청 온 것과 같이 범위를 한정하는 게 어려웠고 
+늘 알고리즘을 풀면서 놓치고 있는 부분인 if (idx === -1) idx = jobs.length와 같은 예외 처리도 잘 생각해야겠다.
